@@ -57,7 +57,7 @@ $ pip install django-crispy-forms
 
 
 ## Configuracion Email
-En el archivo ProyectoFinal/settings.py editar:
+- En el archivo ProyectoFinal/settings.py (linea 152 y 153) editar:
 ```
 EMAIL_ HOST_USER = 'colocar mail tienda'
 EMAIL_HOST_PASSWORD = 'password'
@@ -65,10 +65,16 @@ EMAIL_HOST_PASSWORD = 'password'
 - Preferentemente un GMAIL ya que debemos generar una contraseña de aplicacion, es el mail que utilizara la tienda
 - El password que debe ser generada desde el panel de seguridad de Google, Contraseñas de aplicaciones
 
-Luego en el archivo pedidos/views.py, en la funcion  "enviar_mail" editar:
+- En el archivo pedidos/views.py, en la funcion  "enviar_mail" (linea 50) editar:
 ```
 from_email = "colocar mail tienda"
 ```
+
+- En el archivo contacto/views.py en la funcion "contacto" (linea 18) editar el 'colocar mail tienda' :
+```
+'El usuario con nombre {} con la direccion {} escribe lo siguiente:\n\n  {}' .format(nombre,email,mensaje),'',['colocar mail tienda'],'', reply_to=[email] )
+```
+
 Esto permite a la pagina poder enviar emails a los clientes con sus pedidos y recibir mails de la app contactos de la pagina
 
 
