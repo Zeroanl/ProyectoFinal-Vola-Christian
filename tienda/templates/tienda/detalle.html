@@ -1,0 +1,78 @@
+{% extends "ProyectoFinalApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+      
+    <div style="float:right;">
+        
+    {% if request.user.is_authenticated %}
+        {% include "carro/widget.html" %}
+        {% include "tienda/busqueda.html" %}
+    {% else %}
+          <div class="alert alert-success text-center p-1" style=" width: 180px; margin: 5px 5px;  text-align: center; font-family: Helvetica;"> <strong>Login para Comprar</strong></div>
+         {% include "tienda/busqueda.html" %}
+    {% endif %}
+
+  </div>
+
+{% for producto in productos %}
+
+        <div class="row justify-content-md-center">
+
+            <div class="col">
+
+            <div class="card" style="width: 100%;margin: 5px 5px;">
+       
+                <img src="{{producto.imagen.url}}" class="mx-auto" style="width: 70%; " alt="Card image cap">
+
+                <div class="card-body" style="text-align: center;">
+       
+                     <h7 class="card-title" style="font-family: Arial Black; font-size:15px;">{{producto.nombre}}</h7>
+                     <div><p></p></div>
+
+                     <p class="card-text" style="font-family: Impact; font-size:19px;">PRECIO: ${{producto.Precio}}</p>
+
+                     {% if producto.disponibilidad == True %}
+
+                                   <p class="card-text" style="font-family: Impact; font-size:19px;">En Stock</p>
+
+                             {% else %}
+            
+                                    <p class="card-text" style="font-family: Impact; font-size:19px;">Sin Stock</p>
+
+                             {% endif %}
+                    
+                    <div><p></p></div>
+                    <hr style="height: 2px; background-color: rgb(1, 0, 0);"> 
+                    <div><p></p></div>
+
+                    <p class="card-text" style="font-family: Lucida Sans Unicode; font-size:12px;">DETALLES</p>
+
+                     <p class="card-text" style="font-family: Lucida Sans Unicode; font-size:12px; text-align:justify;">{{producto.contenido}}</p>
+
+                </div>
+
+                <div class="card-footer text-center">
+
+                      {% if request.user.is_authenticated %}
+
+                         <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success" style="font-family:Lucida Sans Unicode;">Agregar</a>
+                      
+                      {% endif %}
+                         
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+    
+{% endfor %}
+
+            </div>
+        </div>
+           
+{% endblock %}

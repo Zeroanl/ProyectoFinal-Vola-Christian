@@ -1,0 +1,25 @@
+{% extends "ProyectoFinalApp/base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<body>
+    <div class="content container" style="text-align:justify;">
+          <form method="post" action="" style="color: white;">
+    
+
+        {% csrf_token %}
+
+        {{miFormulario|crispy}}
+
+
+        <button type="submit" class="btn btn-success">Enviar</button>
+    </div>
+
+  </form>
+</body>
+
+
+{% endblock %}

@@ -1,0 +1,175 @@
+<html>
+
+<head>
+
+
+     {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'ProyectoFinalApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+     <!-- Fonts -->
+    
+     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     
+    <!-- Styles -->
+    <link href="{% static 'ProyectoFinalApp/css/gestion.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      
+        <img src="{% static 'ProyectoFinalApp/img/logo.png' %}">
+      </h1>
+
+
+    {% if user.is_authenticated %}
+ <!-- UserNavbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav2">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mx-auto">
+
+        <li class="nav-item px-lg-4">
+          {% if picture.url %}
+          <img height="60px"  src={{picture.url}}/>
+          {% else %}
+          <img height="60px"  src="{% static 'ProyectoFinalApp/img/profile-default.jpg' %}"/>
+          {% endif %}
+        </li>
+
+        <li class="nav-item px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" >BIENVENIDO &nbsp;&nbsp; {{ user.username }} </a>
+        </li>
+
+        <li class="nav-item  active px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'cerrar_sesion' %}">LOGOUT</a>
+        </li>
+        <li class="nav-item active px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'editar' %}">EDIT PROFILE</a>
+        </li>
+        <li class="nav-item active px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'editaravatar' %}">EDIT AVATAR</a>
+        </li>
+        <li class="nav-item active px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'editarpass' %}">EDIT PASSWORD</a>
+        </li>
+
+
+
+
+       
+      </ul>
+    </div>
+  </div>
+</nav>
+      {% else %}
+      <div style="text-align: right; margin-right: 100px; color: white ; font-family:Lucida Sans Unicode;">
+      
+        <a href="{% url 'logear' %}" class="btn btn-success"  style="color:white; font-family:Lucida Sans Unicode; width: 100px; text-align: center;">Login</a>      &nbsp;&nbsp;     <a href="{% url 'Autenticacion' %}"  class="btn btn-info"   style="color:white; font-family:Lucida Sans Unicode;width: 100px; text-align: center;">Register</a>
+
+        {% endif %}
+      </div>
+
+
+
+
+      <div><p></p></div>
+
+
+
+
+
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'Home' %}">SPACE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item {% if request.path == '/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Home' %}">Inicio</a>
+          </li>
+          <li class="nav-item {% if request.path == '/servicios/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Servicios' %}">Servicios</a>
+          </li>
+          <li class="nav-item {% if request.path == '/tienda/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Tienda' %}">Tienda</a>
+          </li>
+          <li class="nav-item {% if request.path == '/contacto/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Contacto' %}">Contacto</a>
+          </li>
+          <li class="nav-item {% if request.path|slice:':6' == '/blog/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Blog' %}">Blog</a>
+          </li>
+           <li class="nav-item {% if request.path == '/reseñas/' %}active{% endif %} px-lg-4">
+          <a class="nav-link text-uppercase text-expanded" href="{% url 'ListaReseñas' %}">Reseñas</a>
+          </li>
+          <li class="nav-item {% if request.path == '/aboutme/' %}active{% endif %} px-lg-4">
+            <a class="nav-link text-uppercase text-expanded" href="{% url 'Aboutme' %}">About me</a>
+          </li>
+         
+
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+   <!-- Contenido Cambiante -->
+   {% block content %}
+
+
+
+   {% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0">
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	        <a href="#" class="link">
+	          <span class="fa-stack fa-lg">
+	            <i class="fa fa-circle fa-stack-2x"></i>
+	            <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+	          </span>
+	        </a>
+	    </p>
+        <p class="m-0 mbt">
+        	<a href="sample.html" class="link">Política de privacidad</a> ·
+        	<a href="sample.html" class="link">Aviso legal</a> ·
+        	<a href="sample.html" class="link">Cookies</a>
+		</p>
+        <p class="m-0 mbt1">&copy; SPACE 2022</p>
+      </div>
+	</footer>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'ProyectoFinalApp/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'ProyectoFinalApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,60 @@
+{% extends "ProyectoFinalApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+      
+    <div style="float:right;">
+        
+      {% if request.user.is_authenticated %}
+          {% include "carro/widget.html" %}
+          {% include "tienda/busqueda.html" %}
+      {% else %}
+            <div class="alert alert-success text-center p-1" style=" width: 180px; margin: 5px 5px;  text-align: center; font-family: Helvetica;"> <strong>Login para Comprar</strong></div>
+            {% include "tienda/busqueda.html" %}
+      {% endif %}
+
+    </div>
+
+  <div class="row">
+
+{% for producto in productos %}
+
+        <div class="col-md-4">
+ 
+            <div class="card" style="width: 190px; margin: 5px 5px;">
+       
+                    <img src="{{producto.imagen.url}}" class="card-img-top">
+
+                    <div class="card-body" style="text-align: center;">
+           
+                         <h7 class="card-title" style="font-family: Helvetica; font-size:70%;">{{producto.nombre}}</h7>
+
+                         <p class="card-text" style="font-family: Impact;">${{producto.Precio}}</p>
+
+                    </div>
+
+                    <div class="card-footer text-center">
+
+                      {% if request.user.is_authenticated %}
+
+                         <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success" style="font-family:Lucida Sans Unicode; width: 100px; text-align: center;">Agregar</a>
+                      
+                      {% endif %}
+
+                         <a href="{% url 'detalle' producto.id %}" class="btn btn-info" style="font-family:Lucida Sans Unicode; width: 100px; text-align: center;">Detalle</a>
+                        
+
+                    </div>
+      
+      
+            </div>
+        </div>
+
+{% endfor %}
+  </div>
+</div>
+                
+{% endblock %}

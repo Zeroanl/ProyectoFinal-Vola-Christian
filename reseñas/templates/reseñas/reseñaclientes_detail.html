@@ -1,0 +1,62 @@
+{% extends "ProyectoFinalApp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+        <div class="row justify-content-md-center">
+
+            <div class="card-deck">
+                <div class="card" style="width: 100%;margin: 5px 5px; background: linear-gradient(-98deg, #048a81, #067b92); color:white">
+                  <img class="card-img-top" src="{% static 'ProyectoFinalApp/img/reseña.jpg' %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title" style="text-align:center;">{{object.titulo}}</h5>
+                    <p class="card-text" style="text-align:justify;">{{object.contenido}}</p>
+                    <p class="card-text"><small class="text-muted" >AUTOR: {{object.autor}}</small></p>
+                    <p class="card-text"><small class="text-muted">FECHA: {{object.created}}</small></p>
+
+                  </div>
+                </div>
+                <div class="card" style="width: 100%;margin: 5px 5px; background: linear-gradient(-98deg, #048a81, #067b92); color:white">
+                  <img class="card-img-top" src="{% static 'ProyectoFinalApp/img/evaluacion.jpg' %}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title" style="text-align:center;">- PRODUCTO -</h5>
+                    <h5 class="card-title" style="text-align:center;">{{object.producto}}</h5>
+                    <div><p></p></div>
+                    <br>
+                    <h5 class="card-title" style="text-align:center;">- EVALUACION -</h5>
+                    <div style="text-align:center;margin: 5px 5px;">
+                         {% if object.rating == 5 %}
+                         <img  height="100px"   src="{% static 'ProyectoFinalApp/img/5.png' %}">
+                        {% elif object.rating == 4.5 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/4-5.png' %}">
+                        {% elif object.rating == 4 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/4.png' %}">
+                        {% elif object.rating == 3.5 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/3-5.png' %}">
+                        {% elif object.rating == 3 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/3.png' %}"> 
+                        {% elif object.rating == 2.5 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/2-5.png' %}">
+                        {% elif object.rating == 2 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/2.png' %}">
+                        {% elif object.rating == 1.5 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/1-5.png' %}">
+                        {% elif object.rating == 1 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/1.png' %}">
+                        {% elif object.rating == 0.5 %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/0-5.png' %}">
+                        {% else %}
+                        <img  height="100px"   src="{% static 'ProyectoFinalApp/img/0.png' %}">
+                        {% endif %}
+                      </div>
+                  </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+                      
+{% endblock %}

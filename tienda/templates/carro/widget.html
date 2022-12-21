@@ -1,0 +1,95 @@
+
+{% load static %}
+<table class="table table-dark table-borderless" style="font-size:71%; width: 250px; margin: 5px 5px; background-color:rgb(1, 34, 25); text-align: center;">
+
+    <thread >
+          <tr>
+
+               <th colspan="3"  class="text-center">
+ 
+                    <img src="{% static 'ProyectoFinalApp/img/carrito.png' %}" style="width: 30px;">   COMPRAS
+
+               </th>
+
+          </tr>
+          <tr>
+               <th>Producto</th>
+               <th>Cantidad</th>
+               <th>SubTotal</th>
+
+          </tr>
+
+
+
+
+
+    </thread>
+    <tbody>
+        {% if request.session.carro.items %}
+             {% for key, value in request.session.carro.items %}
+
+                   <tr class="text-center">
+
+                        <td>{{value.nombre}}</td>
+                        <td>{{value.cantidad}}</td>
+                        <td>
+                              <a href="{% url 'carro:agregar' value.producto_id  %}" class="btn btn-success">+</a>
+                              <a href="{% url 'carro:restar' value.producto_id  %}" class="btn btn-danger">-</a><br/>
+
+                               $ {{value.precio}}
+
+
+                        </td>
+
+                           
+
+                   </tr>
+        
+
+             {% endfor %}
+
+
+        {% else %}
+            <tr>
+                   <td colspan="3">
+                         <div class="alert alert-danger text-center" style="font-family:Lucida Sans Unicode">
+                                 Sin Productos
+                         </div>
+                   </td>
+
+            </tr>
+        {% endif %}
+
+
+
+    </tbody>
+
+    <tfoot>
+           <tr>
+                 <td colspan="3" style="font-family:Lucida Sans Unicode">
+                          
+                    TOTAL: $ {{importe_total_carro}}
+ 
+                 </td>
+
+           </tr>
+           {% if request.session.carro.items %}
+           <tr>
+                <td colspan="3" style="text-align: center">
+
+                       <a href="{% url 'Procesar_pedido' %}" class="btn btn-success" style="width: 100px;">Comprar</a>
+                       <a href="{% url 'carro:limpiar' %}" class="btn btn-success" style="width: 100px;">Limpiar</a>
+
+                </td>
+
+           </tr>
+           {% endif %}
+
+    </tfoot>
+
+
+
+
+
+
+</table>
