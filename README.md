@@ -76,7 +76,9 @@ Esto permite a la pagina poder enviar emails a los clientes con sus pedidos y re
 Los siguientes comandos son analogos en Mac/Linux/Windows:
 ```
 cd 'direccion carpeta contenedora'
+python manage.py migrate
 ```
+La consola mostrara las migraciones de la base de datos que se realizaron.
 Luego arrancamos el servidor web
 ```
 python manage.py runserver
