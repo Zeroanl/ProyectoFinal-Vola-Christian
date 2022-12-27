@@ -77,6 +77,15 @@ En el archivo contacto/views.py en la funcion "contacto" (linea 18) editar el 'c
 
 Esto permite a la pagina poder enviar emails a los clientes con sus pedidos y recibir mails de la app contactos de la pagina
 
+## Clonar el projecto con git
+windows:
+```
+C:\> git clone https://github.com/Zeroanl/ProyectoFinal-Vola-Christian.git
+```
+Linux/Mac:
+```
+$ git clone https://github.com/Zeroanl/ProyectoFinal-Vola-Christian.git
+```
 
 ## Correr el Servidor
 Los siguientes comandos son analogos en Mac/Linux/Windows:
